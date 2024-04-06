@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Office Transaction System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .content {
+            padding: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'transaction_list' %}">Home</a> |
+        <a href="{% url 'transaction_create' %}">Add Transaction</a>
+    </nav>
+    <div class="content">
+        {% block content %}
+        <table>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Transaction Type</th>
+                <th>Transaction Date</th>
+                <th>Amount</th>
+                <th>Description</th>
+            </tr>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.transaction_type }}</td>
+                <td>{{ transaction.transaction_date }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.description }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endblock %}
+    </div>
+</body>
+</html>
